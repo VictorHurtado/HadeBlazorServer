@@ -4,9 +4,10 @@ namespace CititorServer.Data.Model
 {
     public class Article
     {
+    
         public int idArticulo { get; set; }
 
-        public String DescripcionArticulo { get; set; }
+        public String descripcionArticulo { get; set; }
 
         public int cantArticulosDispo { get; set;}
 

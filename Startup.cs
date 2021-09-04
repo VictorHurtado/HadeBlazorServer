@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CititorServer.Data;
+using CititorServer.Data.Service;
 using Syncfusion.Blazor;
 namespace CititorServer
 {
@@ -30,6 +31,7 @@ namespace CititorServer
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<IArticleService,ArticleService>();
 
             var sqlConnectionConfiguration= new SqlConnectionConfiguration(Configuration.GetConnectionString("SqlDbConnection"));
             services.AddSingleton(sqlConnectionConfiguration);

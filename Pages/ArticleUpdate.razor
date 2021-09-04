@@ -1,0 +1,61 @@
+@page "/EditArticle"
+
+@using CititorServer.Data.Model
+@using CititorServer.Data.Service
+
+@inject IArticleService IArticleService
+@inject NavigationManager NavigationManager
+
+
+<h1>Editar Articulo</h1>
+
+<EditForm Model="@article" OnValidSubmit="@ArticleUpdateSend">
+    <table>
+        <tr>
+            <td>id Articulo:</td>
+            <td><input type="text" @bind="article.idArticulo" required /></td>
+        </tr>
+        <tr>
+            <td>Descripción:</td>
+            <td><input type="text" @bind="article.descripcionArticulo" required /></td>
+        </tr>
+        <tr>
+            <td>Cantidad:</td>
+            <td><input type="text" @bind="article.cantArticulosDispo" /></td>
+        </tr>
+        <tr>
+            <td>Valor:</td>
+            <td><input type="text" @bind="article.valor" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Actualizar" />
+                <input type="button" value="Cancelar" @onclick="@Cancel" />
+            </td>
+        </tr>
+
+    </table>
+
+</EditForm>
+
+
+
+@code {
+
+    Article article = new Article();
+
+    protected async Task ArticleUpdateSend()
+    {   
+        if(article != null){
+            await IArticleService.ArticleUpdate(article);
+        }
+      
+
+        NavigationManager.NavigateTo("/");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

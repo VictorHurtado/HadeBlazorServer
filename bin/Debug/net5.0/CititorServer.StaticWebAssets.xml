@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/Syncfusion.Blazor" Path="C:\Users\victo\.nuget\packages\syncfusion.blazor\19.2.0.57\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>
