@@ -133,16 +133,22 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\ArticleAdd.razor"
+#line 41 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\ArticleAdd.razor"
        
 
     Article article = new Article();
+    Article consultArticle = new Article();
 
     protected async Task ArticleInsert()
     {
-        await IArticleService.ArticleInsert(article);
+       
+        if( await IArticleService.ArticleInsert(article)){
+            consultArticle= await IArticleService.ArticleGet(article.idArticulo); 
+             Console.WriteLine( consultArticle.idArticulo);
+        }
+        
 
-        NavigationManager.NavigateTo("/");
+       
     }
 
     void Cancel()

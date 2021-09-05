@@ -7,5 +7,6 @@ namespace CititorServer.Data.Service
     {
         Task<bool> ArticleInsert(Article article);
         Task<bool> ArticleUpdate(Article article);
+        Task<Article> ArticleGet(int idArticle);
     }
 }

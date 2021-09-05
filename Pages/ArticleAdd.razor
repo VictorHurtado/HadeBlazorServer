@@ -38,17 +38,21 @@
 
 </EditForm>
 
-
-
 @code {
 
     Article article = new Article();
+    Article consultArticle = new Article();
 
     protected async Task ArticleInsert()
     {
-        await IArticleService.ArticleInsert(article);
+       
+        if( await IArticleService.ArticleInsert(article)){
+            consultArticle= await IArticleService.ArticleGet(article.idArticulo); 
+             Console.WriteLine( consultArticle.idArticulo);
+        }
+        
 
-        NavigationManager.NavigateTo("/");
+       
     }
 
     void Cancel()

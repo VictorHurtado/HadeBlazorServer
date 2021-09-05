@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 using CititorServer.Data.Model;
+using System;
 
 namespace CititorServer.Data.Service
 {
@@ -55,6 +56,35 @@ namespace CititorServer.Data.Service
                 CommandType.Text);
             }
         return true;
+        }
+        public async Task<Article> ArticleGet(int idArticle)
+        {   
+            Article article=new Article();
+            await using (var conn = new MySqlConnection(_configuration.Value))
+            {
+                conn.Open();
+                string query = @"SELECT * FROM `articulo` WHERE `idArticulo`= ?idArticle";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("?idArticle", idArticle);
+	        
+                
+                MySqlDataReader articleReader = command.ExecuteReader();
+                
+                if (articleReader.Read())
+                {
+                   
+                    article= new Article(
+                        articleReader.GetInt32(articleReader.GetOrdinal("idArticulo")),
+                        articleReader["DescripcionArticulo"].ToString(),
+                        articleReader.GetInt32(articleReader.GetOrdinal("cantArticulosDispo")),
+                         articleReader.GetInt32(articleReader.GetOrdinal("valor"))
+                        );
+                    
+                   
+                }
+
+            }
+            return article;
         }
     }
 }
