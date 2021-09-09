@@ -140,7 +140,7 @@ using CititorServer.Data.Service;
 
     protected async Task ArticleUpdateSend()
     {   
-        if(article.idArticulo != null && article.descripcionArticulo != null && article.valor!=0){
+        if(article.idArticulo != 0 && article.descripcionArticulo != null && article.valor!=0){
             await IArticleService.ArticleUpdate(article);
         }
       

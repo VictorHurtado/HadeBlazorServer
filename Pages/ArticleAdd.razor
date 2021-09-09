@@ -33,10 +33,29 @@
                 <input type="button" value="Cancelar" @onclick="@Cancel" />
             </td>
         </tr>
+       
 
     </table>
 
 </EditForm>
+<EditForm Model="@consultArticle" OnValidSubmit="@ArticleGet">
+    <table>
+        <tr>
+            <td>ID Articulo:</td>
+            <td><input type="text" @bind="article.idArticulo" required /></td>
+        </tr> 
+        <tr>
+            <td colspan="2">
+                 <input type="submit" value="Traer" />
+                <input type="button" value="Traer Articulo" @onclick="@Cancel" />
+            </td>
+        </tr>
+    </table>
+    
+</EditForm>
+    <div>
+        <span> @consultArticle.idArticulo </span> + <span> @consultArticle.descripcionArticulo </span>
+    </div>
 
 @code {
 
@@ -45,11 +64,17 @@
 
     protected async Task ArticleInsert()
     {
+      
+        await IArticleService.ArticleInsert(article);
+        
+
        
-        if( await IArticleService.ArticleInsert(article)){
-            consultArticle= await IArticleService.ArticleGet(article.idArticulo); 
-             Console.WriteLine( consultArticle.idArticulo);
-        }
+    }
+    protected async Task ArticleGet()
+    {   
+        consultArticle = await IArticleService.ArticleGet(article.idArticulo);
+        Console.WriteLine (consultArticle.descripcionArticulo); 
+           
         
 
        

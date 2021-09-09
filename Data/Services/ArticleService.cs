@@ -63,26 +63,26 @@ namespace CititorServer.Data.Service
             await using (var conn = new MySqlConnection(_configuration.Value))
             {
                 conn.Open();
-                string query = @"SELECT * FROM `articulo` WHERE `idArticulo`= ?idArticle";
+                const string query = @"SELECT * FROM articulo WHERE idArticulo= ?idArticle";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("?idArticle", idArticle);
-	        
-                
-                MySqlDataReader articleReader = command.ExecuteReader();
-                
-                if (articleReader.Read())
-                {
-                   
-                    article= new Article(
-                        articleReader.GetInt32(articleReader.GetOrdinal("idArticulo")),
-                        articleReader["DescripcionArticulo"].ToString(),
-                        articleReader.GetInt32(articleReader.GetOrdinal("cantArticulosDispo")),
-                         articleReader.GetInt32(articleReader.GetOrdinal("valor"))
-                        );
-                    
-                   
-                }
 
+                using (var reader = await command.ExecuteReaderAsync())
+                   
+                
+                    while ( await reader.ReadAsync())
+                    {
+
+                        
+                       
+                        
+                            article.idArticulo = reader.GetFieldValue<int>(0);
+                            article.descripcionArticulo = reader.GetFieldValue<string>(1);
+                            article.cantArticulosDispo = reader.GetFieldValue<int>(2);
+                            article.valor = reader.GetFieldValue<int>(3);
+
+                    }
+                
             }
             return article;
         }
