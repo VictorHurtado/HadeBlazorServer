@@ -32,6 +32,7 @@ namespace CititorServer
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<IArticleService,ArticleService>();
+            services.AddScoped<IMenuService,MenuService>();
 
             var sqlConnectionConfiguration= new SqlConnectionConfiguration(Configuration.GetConnectionString("SqlDbConnection"));
             services.AddSingleton(sqlConnectionConfiguration);

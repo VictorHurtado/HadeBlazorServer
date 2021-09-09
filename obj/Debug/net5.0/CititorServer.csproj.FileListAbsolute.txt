@@ -77,3 +77,5 @@ C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\Citi
 C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\ArticleAdd.razor.g.cs
 C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\ArticleUpdate.razor.g.cs
 C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\ArticleUpdate.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\Child.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\Child.razor.g.cs

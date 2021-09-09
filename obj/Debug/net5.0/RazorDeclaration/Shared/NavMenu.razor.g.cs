@@ -110,6 +110,20 @@ using Syncfusion.Blazor.Grids;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
+using CititorServer.Data.Model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
+using CititorServer.Data.Service;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -118,20 +132,50 @@ using Syncfusion.Blazor.Grids;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
+#line 93 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
+    public IEnumerable<MenuInfo> menuList;
+    
+    private bool expandSubNav;
+    private int clickedMenu = 0;
 
+    private bool hasPageName=true;
+    private int prevClickedMenu=0;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
+    {   
+        if(hasPageName){
+             collapseNavMenu = !collapseNavMenu;
+        }
+
+    }
+    public void GetISCliecked(MenuInfo mn){
+        clickedMenu = mn.MenuId;
+        if(prevClickedMenu != clickedMenu){
+            expandSubNav=false;
+            if(mn.PageName!="" || mn.MenuName=="Home"){
+                hasPageName=true;
+            }else{
+                expandSubNav=!expandSubNav;
+                hasPageName=false;
+        
+            }
+        }else{
+            expandSubNav=!expandSubNav;
+        }
+        prevClickedMenu=clickedMenu;
+    }
+    protected override async Task OnInitializedAsync(){
+        menuList= await IMenuService.GetMenuData();
+
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMenuService IMenuService { get; set; }
     }
 }
 #pragma warning restore 1591
