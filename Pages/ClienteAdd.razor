@@ -1,0 +1,91 @@
+@page "/ClienteAdd"
+
+@using CititorServer.Data.Model
+@using CititorServer.Data.Service
+
+@inject IClienteService IClienteService
+@inject NavigationManager NavigationManager
+
+
+<h1>Adicionar Cliente</h1>
+
+<EditForm Model="@cliente" OnValidSubmit="@ClienteInsert">
+    <table>
+        @* <tr>
+            <td>Dni Cliente:</td>
+            <td><input type="text" @bind="cliente.dnicliente" required /></td>
+        </tr> *@
+        <tr>
+            <td>Nombre Cliente:</td>
+            <td><input type="text" @bind="cliente.nombreCliente" required /></td>
+        </tr>
+        <tr>
+            <td>Apellido Cliente:</td>
+            <td><input type="text" @bind="cliente.apellidoCliente" /></td>
+        </tr>
+        <tr>
+            <td>Correo Cliente:</td>
+            <td><input type="text" @bind="cliente.correoCliente" /></td>
+        </tr>
+        <tr>
+            <td>Direccion Cliente:</td>
+            <td><input type="text" @bind="cliente.direccionCliente" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Adicionar" />
+                <input type="button" value="Cancelar" @onclick="@Cancel" />
+            </td>
+        </tr>
+       
+
+    </table>
+
+</EditForm>
+<EditForm Model="@consultCliente" OnValidSubmit="@ClienteGet">
+    <table>
+        <tr>
+            <td>ID Cliente:</td>
+            <td><input type="text" @bind="cliente.dnicliente" required /></td>
+        </tr> 
+        <tr>
+            <td colspan="2">
+                 <input type="submit" value="Traer" />
+                <input type="button" value="Traer Cliente" @onclick="@Cancel" />
+            </td>
+        </tr>
+    </table>
+    
+</EditForm>
+    <div>
+        <span> @consultCliente.dnicliente </span> + <span> @consultCliente.nombreCliente </span>
+    </div>
+
+@code {
+
+    Cliente cliente = new Cliente();
+    Cliente consultCliente = new Cliente();
+
+    protected async Task ClienteInsert()
+    {
+      
+        await IClienteService.ClienteInsert(cliente);
+        
+
+       
+    }
+    protected async Task ClienteGet()
+    {   
+        consultCliente = await IClienteService.ClienteGet(cliente.dnicliente);
+        Console.WriteLine (consultCliente.nombreCliente); 
+           
+        
+
+       
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

@@ -1,0 +1,61 @@
+@page "/EditDesign"
+
+@using CititorServer.Data.Model
+@using CititorServer.Data.Service
+
+@inject IDesignService IDesignService
+@inject NavigationManager NavigationManager
+
+
+<h1>Editar Diseño</h1>
+
+<EditForm Model="@design" OnValidSubmit="@DesignUpdateSend">
+    <table>
+        <tr>
+            <td>id Diseño:</td>
+            <td><input type="text" @bind="design.idDiseño" required /></td>
+        </tr>
+        <tr>
+            <td>URL Imagen:</td>
+            <td><input type="text" @bind="design.imagenDiseño" required /></td>
+        </tr>
+        <tr>
+            <td>Fecha:</td>
+            <td><input type="text" @bind="design.fechaCarga" /></td>
+        </tr>
+        <tr>
+            <td>Dimensión:</td>
+            <td><input type="text" @bind="design.Tamaño" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Actualizar" />
+                <input type="button" value="Cancelar" @onclick="@Cancel" />
+            </td>
+        </tr>
+
+    </table>
+
+</EditForm>
+
+
+
+@code {
+
+    Design design = new Design();
+
+    protected async Task DesignUpdateSend()
+    {   
+        if(design.idDiseño != 0 && design.imagenDiseño != null && design.fechaCarga!= null && design.Tamaño!= null){
+            await IDesignService.DesignUpdate(design);
+        }
+      
+
+        NavigationManager.NavigateTo("/");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

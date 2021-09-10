@@ -1,0 +1,88 @@
+@page "/DesignAdd"
+
+@using CititorServer.Data.Model
+@using CititorServer.Data.Service
+
+@inject IDesignService IDesignService
+@inject NavigationManager NavigationManager
+
+
+<h1>Adicionar Diseños</h1>
+
+<EditForm Model="@design" OnValidSubmit="@DesignInsert">
+    <table>
+        @* <tr>
+            <td>:</td>
+            <td><input type="text" @bind="cliente.IdCliente" required /></td>
+        </tr> *@
+        <tr>
+            <td>Url Imagen Diseño:</td>
+            <td><input type="text" @bind="design.imagenDiseño" required /></td>
+        </tr>
+        <tr>
+            <td>Fecha:</td>
+            <td><input type="text" @bind="design.fechaCarga" /></td>
+        </tr>
+        <tr>
+            <td>Tamaño:</td>
+            <td><input type="text" @bind="design.Tamaño" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Adicionar" />
+                <input type="button" value="Cancelar" @onclick="@Cancel" />
+            </td>
+        </tr>
+       
+
+    </table>
+
+</EditForm>
+<EditForm Model="@consultDesign" OnValidSubmit="@DesignGet">
+    <table>
+        <tr>
+            <td>ID Diseño:</td>
+            <td><input type="text" @bind="design.idDiseño" required /></td>
+        </tr> 
+        <tr>
+            <td colspan="2">
+                 <input type="submit" value="Traer" />
+                <input type="button" value="Traer URL-Diseño" @onclick="@Cancel" />
+            </td>
+        </tr>
+    </table>
+    
+</EditForm>
+    <div>
+        <span> @consultDesign.idDiseño </span> + <span> @consultDesign.imagenDiseño </span>
+    </div>
+
+@code {
+
+    Design design = new Design();
+    Design consultDesign = new Design();
+    
+
+    protected async Task DesignInsert()
+    {
+      
+        await IDesignService.DesignInsert(design);
+        
+
+       
+    }
+    protected async Task DesignGet()
+    {   
+        consultDesign = await IDesignService.DesignGet(design.idDiseño);
+        Console.WriteLine (consultDesign.imagenDiseño); 
+           
+        
+
+       
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

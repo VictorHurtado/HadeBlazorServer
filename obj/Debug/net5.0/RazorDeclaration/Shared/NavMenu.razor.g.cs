@@ -13,112 +13,112 @@ namespace CititorServer.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 1 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 2 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 3 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 4 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 5 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 6 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 7 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 8 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 9 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using CititorServer;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 10 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using CititorServer.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 11 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Syncfusion.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 12 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Syncfusion.Blazor.Calendars;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 13 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Syncfusion.Blazor.Buttons;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\_Imports.razor"
+#line 14 "C:\Users\nicol\Desktop\HadeBlazorServer\_Imports.razor"
 using Syncfusion.Blazor.Grids;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
+#line 2 "C:\Users\nicol\Desktop\HadeBlazorServer\Shared\NavMenu.razor"
 using CititorServer.Data.Model;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
+#line 3 "C:\Users\nicol\Desktop\HadeBlazorServer\Shared\NavMenu.razor"
 using CititorServer.Data.Service;
 
 #line default
@@ -132,7 +132,7 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 93 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Shared\NavMenu.razor"
+#line 50 "C:\Users\nicol\Desktop\HadeBlazorServer\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
     public IEnumerable<MenuInfo> menuList;

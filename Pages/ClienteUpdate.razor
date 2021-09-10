@@ -1,0 +1,65 @@
+@page "/EditCliente"
+
+@using CititorServer.Data.Model
+@using CititorServer.Data.Service
+
+@inject IClienteService IClienteService
+@inject NavigationManager NavigationManager
+
+
+<h1>Editar Cliente</h1>
+
+<EditForm Model="@cliente" OnValidSubmit="@ClienteUpdateSend">
+    <table>
+        <tr>
+            <td>id Cliente:</td>
+            <td><input type="text" @bind="cliente.dnicliente" required /></td>
+        </tr>
+        <tr>
+            <td>Nombre Cliente:</td>
+            <td><input type="text" @bind="cliente.nombreCliente" required /></td>
+        </tr>
+        <tr>
+            <td>Apellido Cliente:</td>
+            <td><input type="text" @bind="cliente.apellidoCliente" /></td>
+        </tr>
+        <tr>
+            <td>Correo Cliente:</td>
+            <td><input type="text" @bind="cliente.correoCliente" /></td>
+        </tr>
+        <tr>
+            <td>Dirección Cliente:</td>
+            <td><input type="text" @bind="cliente.direccionCliente" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Actualizar" />
+                <input type="button" value="Cancelar" @onclick="@Cancel" />
+            </td>
+        </tr>
+
+    </table>
+
+</EditForm>
+
+
+
+@code {
+
+    Cliente cliente = new Cliente();
+
+    protected async Task ClienteUpdateSend()
+    {   
+        if(cliente.dnicliente != 0 && cliente.nombreCliente != null && cliente.apellidoCliente!= null && cliente.correoCliente!= null && cliente.direccionCliente!= null){
+            await IClienteService.ClienteUpdate(cliente);
+        }
+      
+
+        NavigationManager.NavigateTo("/");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
