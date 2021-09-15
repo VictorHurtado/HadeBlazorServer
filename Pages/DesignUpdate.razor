@@ -8,37 +8,41 @@
 
 
 <h1>Editar Diseño</h1>
+ <EditForm Model="@design" OnValidSubmit="@DesignUpdateSend">
+            <table>
+                <tr>
+                    Código Diseño:
+                    <input type="text" @bind="design.idDiseño" required  class="col-12" />
+                </tr> 
+                <tr>
+                    Url Imagen Diseño:
+                    <input type="text" @bind="design.imagenDiseño" required class="col-12" />
+                </tr>
+                <tr>
+                    Fecha:
+                    <input type="date" @bind="design.fechaCarga" class="col-12"  />
+                </tr>
+                <tr>
+                    Descripción:
+                    <input type="text" @bind="design.descripcion"class="col-12" />
+                </tr>
+                <tr>
+                    Tamaño:
+                    <input type="text" @bind="design.Tamaño" class="col-12"/>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <td colspan="2" class="d-flex justify-content-between">
+                        <input type="submit" value="Actualizar" class="btn btn-primary btn-lg col-7" />
+                        <input type="button" value="Cancelar" class="btn btn-secondary btn-lg col-4" @onclick="@Cancel" />
+                      </td>  
+                </tr>
+            
 
-<EditForm Model="@design" OnValidSubmit="@DesignUpdateSend">
-    <table>
-        <tr>
-            <td>id Diseño:</td>
-            <td><input type="text" @bind="design.idDiseño" required /></td>
-        </tr>
-        <tr>
-            <td>URL Imagen:</td>
-            <td><input type="text" @bind="design.imagenDiseño" required /></td>
-        </tr>
-        <tr>
-            <td>Fecha:</td>
-            <td><input type="text" @bind="design.fechaCarga" /></td>
-        </tr>
-        <tr>
-            <td>Dimensión:</td>
-            <td><input type="text" @bind="design.Tamaño" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Actualizar" />
-                <input type="button" value="Cancelar" @onclick="@Cancel" />
-            </td>
-        </tr>
+            </table>
 
-    </table>
-
-</EditForm>
-
-
+        </EditForm>
 
 @code {
 

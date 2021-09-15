@@ -168,3 +168,13 @@ C:\Users\nicol\Desktop\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Pages\
 C:\Users\nicol\Desktop\HadeBlazorServer\obj\Debug\net5.0\Razor\Pages\ClienteAdd.razor.g.cs
 C:\Users\nicol\Desktop\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Pages\ClienteUpdate.razor.g.cs
 C:\Users\nicol\Desktop\HadeBlazorServer\obj\Debug\net5.0\Razor\Pages\ClienteUpdate.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\ClienteAdd.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\ClienteUpdate.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\DesignAdd.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\DesignList.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\DesignUpdate.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\ClienteAdd.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\ClienteUpdate.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\DesignAdd.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\DesignList.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\DesignUpdate.razor.g.cs

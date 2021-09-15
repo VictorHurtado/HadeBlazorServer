@@ -8,57 +8,67 @@
 
 
 <h1>Adicionar Diseños</h1>
+<div class="row">
+    <div class="d-flex mr-5 m-auto col-lg-4 col-sm-12">
+        
+        <EditForm Model="@design" OnValidSubmit="@DesignInsert">
+            <table>
+                <tr>
+                    Código Diseño:
+                    <input type="text" @bind="design.idDiseño" required  class="col-12" />
+                </tr> 
+                <tr>
+                    Url Imagen Diseño:
+                    <input type="text" @bind="design.imagenDiseño" required class="col-12" />
+                </tr>
+                <tr>
+                    Fecha:
+                    <input type="date" @bind="design.fechaCarga" class="col-12"  />
+                </tr>
+                <tr>
+                    Descripción:
+                    <input type="text" @bind="design.descripcion"class="col-12" />
+                </tr>
+                <tr>
+                    Tamaño:
+                    <input type="text" @bind="design.Tamaño" class="col-12"/>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <td colspan="2" class="d-flex justify-content-between">
+                        <input type="submit" value="Adicionar" class="btn btn-primary btn-lg col-7" />
+                        <input type="button" value="Cancelar" class="btn btn-secondary btn-lg col-4" @onclick="@Cancel" />
+                      </td>  
+                </tr>
+            
 
-<EditForm Model="@design" OnValidSubmit="@DesignInsert">
-    <table>
-        @* <tr>
-            <td>:</td>
-            <td><input type="text" @bind="cliente.IdCliente" required /></td>
-        </tr> *@
-        <tr>
-            <td>Url Imagen Diseño:</td>
-            <td><input type="text" @bind="design.imagenDiseño" required /></td>
-        </tr>
-        <tr>
-            <td>Fecha:</td>
-            <td><input type="text" @bind="design.fechaCarga" /></td>
-        </tr>
-        <tr>
-            <td>Tamaño:</td>
-            <td><input type="text" @bind="design.Tamaño" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Adicionar" />
-                <input type="button" value="Cancelar" @onclick="@Cancel" />
-            </td>
-        </tr>
-       
+            </table>
 
-    </table>
-
-</EditForm>
-<EditForm Model="@consultDesign" OnValidSubmit="@DesignGet">
-    <table>
-        <tr>
-            <td>ID Diseño:</td>
-            <td><input type="text" @bind="design.idDiseño" required /></td>
-        </tr> 
-        <tr>
-            <td colspan="2">
-                 <input type="submit" value="Traer" />
-                <input type="button" value="Traer URL-Diseño" @onclick="@Cancel" />
-            </td>
-        </tr>
-    </table>
-    
-</EditForm>
-    <div>
-        <span> @consultDesign.idDiseño </span> + <span> @consultDesign.imagenDiseño </span>
+        </EditForm>
     </div>
+    <div class="d-flex m-auto col-lg-5 col-sm-8">
+        <div class="d-flex flex-row flex-wrap" >
+        
+                    <div class="card m-3 " style="width: 18rem;">
+                        @if(design.imagenDiseño!=null){
+                            <img class="card-img-top" src="@design.imagenDiseño" alt="Card image cap">
+                        }else{
+                            <img class="card-img-top" src="@defaultImage" alt="Card image cap">
+                        }
+                    
+                        <div class="card-body">
+                            <h5 class="card-title">@design.descripcion</h5>
+                            <p class="card-text">@design.fechaCarga - @design.Tamaño </p>
+                        
+                        </div>
+                    </div>  
 
+        </div>
+    </div>
+</div>
 @code {
-
+    string defaultImage="https://dbdzm869oupei.cloudfront.net/img/quadres/preview/29304.png";
     Design design = new Design();
     Design consultDesign = new Design();
     
