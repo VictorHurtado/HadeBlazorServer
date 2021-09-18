@@ -11,14 +11,16 @@
     <div class="d-flex flex-row flex-wrap">
         @foreach (var design in designsList )
             {   
-                <div class="card m-3 " style="width: 18rem;">
+              if(design.status ==1){
+                    <div class="card m-3 " style="width: 18rem;">
                     <img class="card-img-top min-height-img" src="@design.imagenDiseño" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@design.idDiseño @design.descripcion</h5>
                         <p class="card-text">@design.fechaCarga - @design.Tamaño </p>
                         <a href="#" class="btn btn-primary">Agregar</a>
                     </div>
-                </div>  
+                </div> 
+              } 
             }
     </div>
    
@@ -26,7 +28,7 @@
 @code {
 
     IEnumerable<Design> designsList;
-     protected override async Task OnInitializedAsync(){
+    protected override async Task OnInitializedAsync(){
          
         designsList= await IDesignService.AllDesignsGet();
 

@@ -61,4 +61,7 @@ a, .btn-link {
         min-height: 300px;
         object-fit: cover;
     }
+    .btn-icon{
+        margin-left:10px;
+    }
     

@@ -133,11 +133,11 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignList.razor"
+#line 28 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignList.razor"
        
 
     IEnumerable<Design> designsList;
-     protected override async Task OnInitializedAsync(){
+    protected override async Task OnInitializedAsync(){
          
         designsList= await IDesignService.AllDesignsGet();
 

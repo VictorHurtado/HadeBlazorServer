@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 using CititorServer.Data.Model;
 using CititorServer.Data.Service;
 using System;
-using System;
+
 using System.Collections.Generic;
 
 namespace CititorServer.Data.Service
@@ -33,16 +33,19 @@ namespace CititorServer.Data.Service
                 parameters.Add("imagenDiseño", design.imagenDiseño, DbType.String);
                 parameters.Add("fechaCarga", design.fechaCarga, DbType.DateTime);
                 parameters.Add("Tamaño", design.Tamaño, DbType.String);
-                const string query = @"INSERT INTO diseños (idDiseño,descripcion, imagenDiseño, fechaCarga, Tamaño) 
-                VALUES (@idDiseño,@descripcion, @imagenDiseño, @fechaCarga,@Tamaño)";
+                parameters.Add("status", design.status, DbType.Int32);
+                const string query = @"INSERT INTO diseños (idDiseño,descripcion, imagenDiseño, fechaCarga, Tamaño,status) 
+                VALUES (@idDiseño,@descripcion, @imagenDiseño, @fechaCarga,@Tamaño,@status)";
                 await conn.ExecuteAsync(query, new { design.idDiseño, design.descripcion, design.imagenDiseño, 
-                design.fechaCarga,design.Tamaño }, commandType: CommandType.Text);
+                design.fechaCarga,design.Tamaño,design.status }, commandType: CommandType.Text);
             }
             return true;
         }
         
         public async Task<bool> DesignUpdate(Design design)
         {
+               
+        Console.WriteLine(design.idDiseño+""+design.status+"-------");
             using (var conn = new MySqlConnection(_configuration.Value))
             {
                 var parameters = new DynamicParameters();
@@ -51,15 +54,17 @@ namespace CititorServer.Data.Service
                 parameters.Add("imagenDiseño", design.imagenDiseño, DbType.String);
                 parameters.Add("fechaCarga", design.fechaCarga, DbType.DateTime);
                 parameters.Add("Tamaño", design.Tamaño, DbType.String);
+                parameters.Add("status", design.status, DbType.Int32);
                 const string query = @"UPDATE diseños 
                 SET idDiseño = @idDiseño, 
                 descripcion = @descripcion,
                 imagenDiseño = @imagenDiseño,
                 fechaCarga = @fechaCarga,
-                Tamaño = @Tamaño
+                Tamaño = @Tamaño,
+                status=@status
                 WHERE idDiseño = @idDiseño";
                 await conn.ExecuteAsync(query, new { design.idDiseño,design.descripcion, design.imagenDiseño, 
-                design.fechaCarga, design.Tamaño }, commandType: 
+                design.fechaCarga, design.Tamaño,design.status }, commandType: 
                 CommandType.Text);
             }
         return true;
@@ -86,8 +91,9 @@ namespace CititorServer.Data.Service
                             design.idDiseño = reader.GetFieldValue<int>(0);
                             design.imagenDiseño = reader.GetFieldValue<string>(1);
                             design.descripcion= reader.GetFieldValue<string>(2);
-                            design.fechaCarga = reader.GetFieldValue<DateTime>(4);
+                            design.fechaCarga = reader.GetFieldValue<DateTime>(3);
                             design.Tamaño = reader.GetFieldValue<string>(4);
+                            design.status = reader.GetFieldValue<int>(5);
 
                     }
                 

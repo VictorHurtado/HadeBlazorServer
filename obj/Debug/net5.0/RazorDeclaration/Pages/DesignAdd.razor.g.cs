@@ -133,31 +133,51 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignAdd.razor"
+#line 115 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignAdd.razor"
        
     string defaultImage="https://dbdzm869oupei.cloudfront.net/img/quadres/preview/29304.png";
     Design design = new Design();
-    Design consultDesign = new Design();
+      IEnumerable<Design> designsList;
     
 
     protected async Task DesignInsert()
     {
       
         await IDesignService.DesignInsert(design);
-        
+         designsList= await IDesignService.AllDesignsGet();
 
        
     }
-    protected async Task DesignGet()
+    
+    protected async Task DesignUpdateSend(Design designIn)
     {   
-        consultDesign = await IDesignService.DesignGet(design.idDiseño);
-        Console.WriteLine (consultDesign.imagenDiseño); 
-           
-        
+     
+   
+        await IDesignService.DesignUpdate(designIn);
+        Console.WriteLine("actualizado");
 
-       
+      
     }
 
+     protected override async Task OnInitializedAsync(){
+         
+        designsList= await IDesignService.AllDesignsGet();
+         
+        
+    }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if(firstRender){
+                    await JSRuntime.InvokeAsync<object>("TestDataTablesAdd", "#example");
+            }
+        }
+
+    
+    public async void  DesignUpdate(Design designIn,int value){
+        designIn.status=value;
+        await DesignUpdateSend(designIn);
+    }
     void Cancel()
     {
         NavigationManager.NavigateTo("/");
@@ -166,6 +186,8 @@ using CititorServer.Data.Service;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDesignService IDesignService { get; set; }
     }

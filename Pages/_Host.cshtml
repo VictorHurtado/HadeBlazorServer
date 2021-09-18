@@ -16,6 +16,11 @@
     <link href="css/site.css" rel="stylesheet" />
 	<link href="CititorServer.styles.css" rel="stylesheet" />
 	<link rel="stylesheet" href="_content/Syncfusion.Blazor/styles/tailwind.css" />
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
     <component type="typeof(App)" render-mode="ServerPrerendered" />
@@ -32,5 +37,13 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script>
+        function TestDataTablesAdd(table) {
+            $(document).ready(function () {
+                $(table).DataTable();
+            });
+        }
+    </script>
+    
 </body>
 </html>
