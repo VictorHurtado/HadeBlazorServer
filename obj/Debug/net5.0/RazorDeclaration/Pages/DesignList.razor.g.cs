@@ -133,20 +133,47 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignList.razor"
+#line 76 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignList.razor"
        
+    string visibleArticleClass { get; set; }
 
     IEnumerable<Design> designsList;
-    protected override async Task OnInitializedAsync(){
-         
-        designsList= await IDesignService.AllDesignsGet();
+    IEnumerable<Article> articlesListDe;
 
+    protected bool expandCarList;
+
+    Article selectedArticle;
+    Design selectedDesign;
+
+    protected override async Task OnInitializedAsync()
+    {
+        designsList = await IDesignService.AllDesignsGet();
+        articlesListDe = await IListdeService.AllArticleListDe();
     }
+    void selectDesignOfList(Design design)
+    {
+        selectedDesign = design;
+         Console.WriteLine(selectedDesign.descripcion);
+    }
+    void selectArticleOfList(Article article)
+    {
+        selectedArticle = article;
+        Console.WriteLine(selectedArticle.descripcionArticulo);
+    }
+    protected async Task asignDesign (int idArticle,int idDesign) {
+        if(idArticle!=0 && idDesign!=0){
+            bool result = await IListdeService.ListdeUpdateDesign(idArticle,idDesign);
+            Console.WriteLine(result);
+        }
+        
+    }
+   
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IListdeService IListdeService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDesignService IDesignService { get; set; }
     }
 }

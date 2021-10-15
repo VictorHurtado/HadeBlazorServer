@@ -37,6 +37,7 @@ namespace CititorServer
             services.AddScoped<IMenuService,MenuService>();
             services.AddScoped<IDesignService,DesignService>();
             services.AddScoped<IClienteService,ClienteService>();
+            services.AddScoped<IListdeService,ListdeService>();
 
             var sqlConnectionConfiguration= new SqlConnectionConfiguration(Configuration.GetConnectionString("SqlDbConnection"));
             services.AddSingleton(sqlConnectionConfiguration);
