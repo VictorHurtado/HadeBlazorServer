@@ -133,7 +133,7 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 76 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignList.razor"
+#line 86 "C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\Pages\DesignList.razor"
        
     string visibleArticleClass { get; set; }
 
@@ -145,6 +145,8 @@ using CititorServer.Data.Service;
     Article selectedArticle;
     Design selectedDesign;
 
+    string imagePathPreview= "images/";
+
     protected override async Task OnInitializedAsync()
     {
         designsList = await IDesignService.AllDesignsGet();
@@ -154,16 +156,33 @@ using CititorServer.Data.Service;
     {
         selectedDesign = design;
          Console.WriteLine(selectedDesign.descripcion);
+         updatePreview();
     }
     void selectArticleOfList(Article article)
     {
         selectedArticle = article;
         Console.WriteLine(selectedArticle.descripcionArticulo);
+        updatePreview();
+    }
+    void updatePreview(){
+        if(selectedArticle!=null && selectedDesign!= null){
+            resetImagePath();
+            imagePathPreview= $"{imagePathPreview}{selectedArticle.idArticulo}{selectedDesign.idDiseño}.jpg";  
+            Console.WriteLine(imagePathPreview);
+        }
+        
+    }
+     void resetImagePath(){
+        imagePathPreview= "images/";
     }
     protected async Task asignDesign (int idArticle,int idDesign) {
         if(idArticle!=0 && idDesign!=0){
             bool result = await IListdeService.ListdeUpdateDesign(idArticle,idDesign);
             Console.WriteLine(result);
+            selectedDesign= null;
+            selectedArticle=null;
+           resetImagePath();
+
         }
         
     }

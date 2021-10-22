@@ -12,6 +12,7 @@
     <h3>Asignación de Diseños</h3>
     <div class="d-flex flex-row justify-content-between">
         <p>Articulo: @(selectedArticle!=null?selectedArticle.descripcionArticulo : "" )</p>
+        
         <br><br>
         <a class="btn btn-custom mx-3" style="color:white;" @onclick="()=>expandCarList = !expandCarList">
             <span class="oi oi-cart"></span></a>
@@ -25,7 +26,7 @@
             if (design.status == 1)
             {
                 <div class="card m-3 " style="width: 18rem;">
-                    <img class="card-img-top min-height-img" src="@design.imagenDiseño" alt="Card image cap">
+                    <img class="card-img-top minHeightDesingImage" src="@design.imagenDiseño" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@design.idDiseño @design.descripcion</h5>
                         <p class="card-text">@design.fechaCarga - @design.Tamaño </p>
@@ -48,7 +49,8 @@
                         <img class="card-img-top cardDesign" src="@article.imagenArticulo" alt="Card image cap">
                         <div class="card-body">
 
-                            <p class="card-text">@article.descripcionArticulo </p>
+                            <p class="card-text" >@article.descripcionArticulo </p>
+                            
 
                         </div>
 
@@ -59,10 +61,18 @@
 
 
             }
-              <div class="my-5 " style="width:100% ">
+              <div class="my-5"  style="width:100%; color:white; ">
+
+                <h4>Vista Previa</h4>
                 <p>Articulo: @(selectedArticle!=null?selectedArticle.descripcionArticulo : "" )</p>
                 <p>Diseño: @(selectedDesign!=null?selectedDesign.descripcion : "" )</p>
-          
+                @if(imagePathPreview!= "images/"){
+                    <div style="width:100%; display:block"> 
+                        <img class="mx-auto" src="@imagePathPreview" alt="Card image cap">
+                    </div>
+                }
+                <br>
+                <br>
                 <a class="btn btn-primary  btn-lg btn-block  " style="color:white;" @onclick="()=>asignDesign(selectedArticle.idArticulo, selectedDesign.idDiseño)">Guardar</a>
             </div>
 
@@ -84,6 +94,8 @@
     Article selectedArticle;
     Design selectedDesign;
 
+    string imagePathPreview= "images/";
+
     protected override async Task OnInitializedAsync()
     {
         designsList = await IDesignService.AllDesignsGet();
@@ -93,16 +105,33 @@
     {
         selectedDesign = design;
          Console.WriteLine(selectedDesign.descripcion);
+         updatePreview();
     }
     void selectArticleOfList(Article article)
     {
         selectedArticle = article;
         Console.WriteLine(selectedArticle.descripcionArticulo);
+        updatePreview();
+    }
+    void updatePreview(){
+        if(selectedArticle!=null && selectedDesign!= null){
+            resetImagePath();
+            imagePathPreview= $"{imagePathPreview}{selectedArticle.idArticulo}{selectedDesign.idDiseño}.jpg";  
+            Console.WriteLine(imagePathPreview);
+        }
+        
+    }
+     void resetImagePath(){
+        imagePathPreview= "images/";
     }
     protected async Task asignDesign (int idArticle,int idDesign) {
         if(idArticle!=0 && idDesign!=0){
             bool result = await IListdeService.ListdeUpdateDesign(idArticle,idDesign);
             Console.WriteLine(result);
+            selectedDesign= null;
+            selectedArticle=null;
+           resetImagePath();
+
         }
         
     }

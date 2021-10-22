@@ -178,3 +178,9 @@ C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\Citi
 C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\DesignAdd.razor.g.cs
 C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\DesignList.razor.g.cs
 C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\DesignUpdate.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\bin\Debug\net5.0\MailKit.dll
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\bin\Debug\net5.0\MimeKit.dll
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Data\Services\Email.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\RazorDeclaration\Pages\Email.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Data\Services\Email.razor.g.cs
+C:\Users\victo\Documents\Universidad Santiago\.Net\Hade_Store\CititorServer\CititorServer\obj\Debug\net5.0\Razor\Pages\Email.razor.g.cs

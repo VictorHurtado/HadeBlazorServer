@@ -51,8 +51,8 @@ a, .btn-link {
     min-height: 100px;
 }
 
-.selectedArticle{
-    
+.minHeightDesingImage{
+    min-height: 400px;
 }
 
 .content {
