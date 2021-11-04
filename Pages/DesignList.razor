@@ -68,7 +68,7 @@
                 <p>Diseño: @(selectedDesign!=null?selectedDesign.descripcion : "" )</p>
                 @if(imagePathPreview!= "images/"){
                     <div style="width:100%; display:block"> 
-                        <img class="mx-auto" src="@imagePathPreview" alt="Card image cap">
+                        <img class="mx-auto maxWidhtPreviewImage" src="@imagePathPreview" alt="Card image cap">
                     </div>
                 }
                 <br>
@@ -110,6 +110,7 @@
     void selectArticleOfList(Article article)
     {
         selectedArticle = article;
+        
         Console.WriteLine(selectedArticle.descripcionArticulo);
         updatePreview();
     }

@@ -54,6 +54,9 @@ a, .btn-link {
 .minHeightDesingImage{
     min-height: 400px;
 }
+.maxWidhtPreviewImage{
+    max-width: 200px;
+}
 
 .content {
     padding-top: 1.1rem;

@@ -161,6 +161,7 @@ using CititorServer.Data.Service;
     void selectArticleOfList(Article article)
     {
         selectedArticle = article;
+        
         Console.WriteLine(selectedArticle.descripcionArticulo);
         updatePreview();
     }
