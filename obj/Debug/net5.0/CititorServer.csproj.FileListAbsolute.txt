@@ -222,7 +222,6 @@ D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.cspr
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.MvcApplicationPartsAssemblyInfo.cache
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.RazorComponent.input.cache
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Data\Services\Email.razor.g.cs
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Pages\ArticleAdd.razor.g.cs
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Pages\ArticleUpdate.razor.g.cs
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Pages\Child.razor.g.cs
@@ -245,7 +244,6 @@ D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.TagH
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.TagHelpers.output.cache
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.RazorCoreGenerate.cache
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\Razor\App.razor.g.cs
-D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\Razor\Data\Services\Email.razor.g.cs
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\Razor\Pages\ArticleAdd.razor.g.cs
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\Razor\Pages\ArticleUpdate.razor.g.cs
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\Razor\Pages\Child.razor.g.cs

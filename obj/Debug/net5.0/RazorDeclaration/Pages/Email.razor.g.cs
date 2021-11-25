@@ -124,7 +124,7 @@ using CititorServer.Data.Service;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Email")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/mail")]
     public partial class Email : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
