@@ -279,3 +279,5 @@ D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\ref\CititorServer.
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.pdb
 D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\CititorServer.genruntimeconfig.cache
 D:\programming\hade_blazzor\HadeBlazorServer\bin\Debug\net5.0\ZstdNet.dll
+D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\RazorDeclaration\Pages\Invoice.razor.g.cs
+D:\programming\hade_blazzor\HadeBlazorServer\obj\Debug\net5.0\Razor\Pages\Invoice.razor.g.cs

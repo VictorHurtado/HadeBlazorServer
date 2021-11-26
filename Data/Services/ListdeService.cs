@@ -113,7 +113,7 @@ namespace CititorServer.Data.Service
             await using (var conn = new MySqlConnection(_configuration.Value))
             {
                 conn.Open();
-                const string query = @"SELECT * FROM lista_deseos";
+                const string query = @"SELECT * FROM lista_deseos order by idArticulo asc";
                 if(conn.State == ConnectionState.Closed){
                     conn.Open();
                 }
@@ -143,7 +143,7 @@ namespace CititorServer.Data.Service
             await using (var conn = new MySqlConnection(_configuration.Value))
             {
                 conn.Open();
-                const string query = @"SELECT A.* FROM articulo A JOIN lista_deseos LD ON LD.idArticulo=A.idArticulo";
+                const string query = @"SELECT A.* FROM articulo A JOIN lista_deseos LD ON LD.idArticulo=A.idArticulo order by LD.idArticulo asc";
                 if(conn.State == ConnectionState.Closed){
                     conn.Open();
                 }
