@@ -137,9 +137,11 @@ using CititorServer.Data.Service;
  
     MailRequest mail = new MailRequest();
 
-    private void SendEmail()
+  private void SendEmail()
     {
+    
         EmailSenderService.SendEmailAsync(mail);
+        
     }
 
 #line default

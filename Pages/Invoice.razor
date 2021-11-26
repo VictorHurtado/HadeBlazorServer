@@ -5,6 +5,7 @@
 
 @inject IDesignService IDesignService
 @inject IListdeService IListdeService
+@inject IBonoService IBonoService
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
@@ -109,8 +110,26 @@
           <td></td>
           <td></td>
 
-          <td>Subotal</td>
+          <td><strong>Subotal</strong> </td>
           <td> @subtotal </td>
+
+
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+
+          <td> <strong>  Descuento</strong></td>
+          <td>@discount </td>
+
+
+        </tr>
+          <tr>
+          <td></td>
+          <td></td>
+
+          <td> <strong>  Total</strong></td>
+          <td>@total </td>
 
 
         </tr>
@@ -123,7 +142,74 @@
   <br>
   <br>
   <br>
-  
+    <h4>Sección de Cupones</h4>
+  <div class="row py-5">
+    
+    
+      <form class="column gy-2 gx-3 align-items-center">
+        
+            @for(int j=0; j<cont;j++){
+              
+            <div class="col-auto">
+              
+              <label class="visually-hidden" for="autoSizingInput">Código de Cupón @j</label><br>
+              <div class="row">
+                
+              @if(j == cont-1  && bonos.Count()==0 ){
+                <input type="text"  class="form-control col-8"  value="0" @onchange="(ChangeEventArgs __e) =>addBonoInBonos(__e)" id="autoSizingInput" placeholder="Jane Doe">
+              }else if(j == cont-1  && bonos.Count()!=0 ) {
+                 String value=  bonos[bonos.Count()-1].co_alpha;
+                <input type="text"  class="form-control col-8" @onchange="(ChangeEventArgs __e) =>addBonoInBonos(__e)" id="autoSizingInput" >
+              
+              }else{
+                String value=  bonos[j].co_alpha;
+                <input type="text"  class="form-control col-8"  disabled id="autoSizingInput" placeholder=@value>
+              }
+              <div class="d-flex justify-content-center col-2 px-0 py-0" style="height: calc(1.5em + .75rem + 2px) !important;" >
+                
+                  
+                  @if(bonos.Count()>0 && bonos.Count()>j){
+                    if(bonos[j].porcentaje>0 && bonos[j].porcentaje<55 ){
+                      <a class="btn btn-warning btn-lg btn-block px-0" style="color:white; font-size: 0.8rem; "><b> @bonos[j].porcentaje %</b> </a>
+                    }else if(bonos[j].porcentaje>=56){
+                      <a class="btn btn-success btn-lg btn-block px-0" style="color:white; font-size: 0.8rem; "><b> @bonos[j].porcentaje %</b> </a>
+                    }
+                  }else{
+                    <a class="btn btn-danger btn-lg btn-block px-0" style="color:white; font-size: 0.8rem; "><b>0%</b> </a>
+              
+                   }
+                  
+                  
+                  
+              </div>
+              </div>
+            </div> 
+            
+            
+             <br>
+          } 
+        
+          
+        <br>
+        <div class="row d-flex justify-content-between" >
+            <div class="col-auto d-flex justify-content-center col-2">
+            <a class="btn btn-danger  btn-lg " style="color:white;" @onclick="()=>removeNewInput()">-</a>
+          </div>
+           <div class="col-auto d-flex justify-content-center col-2" >
+            <a class="btn btn-success  btn-lg " style="color:white;" @onclick="()=>addNewInput()">+</a>
+          </div>
+        
+          <div class="col-auto d-flex justify-content-center col-8 p-0" >
+            <a class="btn btn-primary btn-lg btn-block" @onclick="()=>calculateBonoPercentage()" style="color:white;" >Aplicar</a>
+          </div>
+        </div>
+
+
+      </form>
+     
+    
+
+  </div>
 </div>
 
 
@@ -133,7 +219,15 @@
   IEnumerable<Article> articlesListDe;
   IEnumerable<Listde> qtArticleListDe;
 
+  List<Bono> bonos = new List<Bono>();
+  
+  int cont=1;
   double subtotal = 0;
+
+  double percent= 0;
+  double discount =0;
+  double MAXOFPERCENT =56;
+  double total = 0;
   protected override async Task OnInitializedAsync()
   {
 
@@ -141,7 +235,16 @@
     qtArticleListDe = await IListdeService.AllListdeGet();
 
     calculateSubtotal();
+    calculateTotal();
 
+  }
+  void addNewInput(){
+    cont++;
+  }
+  void removeNewInput(){
+    bonos.RemoveAt(bonos.Count()-1);
+     printAllBonos();
+    cont--;
   }
   void calculateSubtotal(){
     if(articlesListDe.Count() ==qtArticleListDe.Count()  && qtArticleListDe.Count()!= 0 && articlesListDe.Count() != 0){
@@ -149,7 +252,7 @@
       var myQtArticles = qtArticleListDe.ToList();
       foreach(var articleFor in articlesListDe){
           if(articleFor.idArticulo == myQtArticles[i].idArticulo){
-            Console.WriteLine((articleFor.valor*myQtArticles[i].cantArticulo));
+    
             subtotal = subtotal + (articleFor.valor*myQtArticles[i].cantArticulo);
           }
     
@@ -157,6 +260,63 @@
       }
     }
   }
+
+  void calculateTotal(){
+    total=0;
+    total = Math.Round(subtotal -discount,2);
+  }
+  void calculateBonoPercentage(){
+
+    discount=0;
+      foreach(var bono in bonos){
+        percent = percent + (bono.porcentaje);
+         if(percent<=MAXOFPERCENT){
+           Console.WriteLine(percent);
+           
+           discount = discount + ((bono.porcentaje/100.0) * subtotal);
+
+           discount= Math.Round(discount,2);
+         }else{
+           Console.WriteLine("Excediste el porcentaje del bono");
+         }
+      }
+      calculateTotal();
+  }
+
+  public async void addBonoInBonos(Microsoft.AspNetCore.Components.ChangeEventArgs args){
+
+    Bono newBono= new Bono();
+    
+    try{
+      newBono = await IBonoService.bonoGet((string)args.Value);
+      
+      if(noDuplicateBono(newBono) != true && bonos.Count() != cont && newBono.idBono !=0 ){ 
+        bonos.Add(newBono);
+      }
+      
+    }catch(Exception e){
+      Console.WriteLine("Algo salio mal");
+     }
+  
+      printAllBonos();
+  }
+
+
+  void printAllBonos(){
+    Console.WriteLine("-------------------------");
+    foreach(var bono in bonos){
+      Console.WriteLine("bono: "+ bono.co_alpha + " porcentaje:"+ bono.porcentaje);
+    }
+  }
+  public bool noDuplicateBono(Bono newBono){
+      foreach(var bono in bonos){
+        if(bono.idBono == newBono.idBono){
+          return true;
+        }
+      }
+      return false;
+  }
+
 
   protected override async Task OnAfterRenderAsync(bool firstRender)
   {

@@ -133,13 +133,21 @@ using CititorServer.Data.Service;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 131 "D:\programming\hade_blazzor\HadeBlazorServer\Pages\Invoice.razor"
+#line 217 "D:\programming\hade_blazzor\HadeBlazorServer\Pages\Invoice.razor"
        
   
   IEnumerable<Article> articlesListDe;
   IEnumerable<Listde> qtArticleListDe;
 
+  List<Bono> bonos = new List<Bono>();
+  
+  int cont=1;
   double subtotal = 0;
+
+  double percent= 0;
+  double discount =0;
+  double MAXOFPERCENT =56;
+  double total = 0;
   protected override async Task OnInitializedAsync()
   {
 
@@ -147,7 +155,16 @@ using CititorServer.Data.Service;
     qtArticleListDe = await IListdeService.AllListdeGet();
 
     calculateSubtotal();
+    calculateTotal();
 
+  }
+  void addNewInput(){
+    cont++;
+  }
+  void removeNewInput(){
+    bonos.RemoveAt(bonos.Count()-1);
+     printAllBonos();
+    cont--;
   }
   void calculateSubtotal(){
     if(articlesListDe.Count() ==qtArticleListDe.Count()  && qtArticleListDe.Count()!= 0 && articlesListDe.Count() != 0){
@@ -155,7 +172,7 @@ using CititorServer.Data.Service;
       var myQtArticles = qtArticleListDe.ToList();
       foreach(var articleFor in articlesListDe){
           if(articleFor.idArticulo == myQtArticles[i].idArticulo){
-            Console.WriteLine((articleFor.valor*myQtArticles[i].cantArticulo));
+    
             subtotal = subtotal + (articleFor.valor*myQtArticles[i].cantArticulo);
           }
     
@@ -163,6 +180,63 @@ using CititorServer.Data.Service;
       }
     }
   }
+
+  void calculateTotal(){
+    total=0;
+    total = Math.Round(subtotal -discount,2);
+  }
+  void calculateBonoPercentage(){
+
+    discount=0;
+      foreach(var bono in bonos){
+        percent = percent + (bono.porcentaje);
+         if(percent<=MAXOFPERCENT){
+           Console.WriteLine(percent);
+           
+           discount = discount + ((bono.porcentaje/100.0) * subtotal);
+
+           discount= Math.Round(discount,2);
+         }else{
+           Console.WriteLine("Excediste el porcentaje del bono");
+         }
+      }
+      calculateTotal();
+  }
+
+  public async void addBonoInBonos(Microsoft.AspNetCore.Components.ChangeEventArgs args){
+
+    Bono newBono= new Bono();
+    
+    try{
+      newBono = await IBonoService.bonoGet((string)args.Value);
+      
+      if(noDuplicateBono(newBono) != true && bonos.Count() != cont && newBono.idBono !=0 ){ 
+        bonos.Add(newBono);
+      }
+      
+    }catch(Exception e){
+      Console.WriteLine("Algo salio mal");
+     }
+  
+      printAllBonos();
+  }
+
+
+  void printAllBonos(){
+    Console.WriteLine("-------------------------");
+    foreach(var bono in bonos){
+      Console.WriteLine("bono: "+ bono.co_alpha + " porcentaje:"+ bono.porcentaje);
+    }
+  }
+  public bool noDuplicateBono(Bono newBono){
+      foreach(var bono in bonos){
+        if(bono.idBono == newBono.idBono){
+          return true;
+        }
+      }
+      return false;
+  }
+
 
   protected override async Task OnAfterRenderAsync(bool firstRender)
   {
@@ -185,6 +259,7 @@ using CititorServer.Data.Service;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IBonoService IBonoService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IListdeService IListdeService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDesignService IDesignService { get; set; }
     }

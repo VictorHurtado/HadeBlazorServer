@@ -14,7 +14,8 @@ namespace CititorServer.Data.Model
             this.porcentaje=porcentaje;
 
         }
-
+       
+        
         public int idBono { get; set; }
 
         public String co_alpha { get; set; }

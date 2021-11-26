@@ -38,8 +38,10 @@ namespace CititorServer
             services.AddScoped<IDesignService,DesignService>();
             services.AddScoped<IClienteService,ClienteService>();
             services.AddScoped<IListdeService,ListdeService>();
+            services.AddScoped<IBonoService,BonoService>();
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton<IEmailSenderService, EmailSenderService>();
+            
 
             var sqlConnectionConfiguration= new SqlConnectionConfiguration(Configuration.GetConnectionString("SqlDbConnection"));
             services.AddSingleton(sqlConnectionConfiguration);
